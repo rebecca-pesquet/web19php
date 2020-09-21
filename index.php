@@ -120,7 +120,34 @@
     }
     echo "</ul>";
 
-    echo "<h2>LE CA est de : ".$prix."€</h2>"
+    echo "<h2>LE CA est de : ".$prix."€</h2>";
+
+    $bibliotheques = [
+        "ABC1" => ["Nom" => "Notre dame de Paris", "Page" => 655, "Année"=> 1831 ]
+        ,"DEF2" => ["Nom" => "Les misérables", "Page" => 543, "Année"=> 1962 ]
+        ,"GHI3" => ["Nom" => "Les 3 mousquetaires", "Page" => 389, "Année"=> 1920 ]
+       , "JKL4" => ["Nom" => "50 nuances de Grey", "Page" => 224, "Année"=> 2010 ]
+    ];
+
+    // 1. Combien de page en tout
+    $page = 0;
+    $moyenne = 0;
+    foreach($bibliotheques as $key => $livre){
+        $page = $page + $livre["Page"];
+        $moyenne = $moyenne + $livre["Année"];
+    }
+
+    $moyenne = $moyenne / count($bibliotheques);
+
+    echo "<p>Le nombre de page est de : ".$page."</p>";
+    echo "<p>La moyenne d'année est de : ".$moyenne."</p>";
+
+
+   //  2/ Combien le "ABC1" a-t-il de page en plus que "JKL4" ?
+    $diffPage = $bibliotheques["ABC1"]["Page"] - $bibliotheques["JKL4"]["Page"];
+    echo "<h2>Nb page différence : ".$diffPage."</h2>";
+
+
 
     ?>
     <!-- ICI le code PHP ne sera pas interprété -->
