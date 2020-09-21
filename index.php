@@ -87,6 +87,41 @@
                 ]
     ];
     var_dump($achats);
+
+    $prix = 0;
+    echo "<ul>";
+    foreach ($achats as $key => $acheteur) {
+        $prix = $prix + $acheteur["Prix"];
+        echo "<li>Voici le panier de : ".$acheteur["Prenom"];
+
+            $fruits = $acheteur["Panier"]["Fruit"];
+            $legumes = $acheteur["Panier"]["Legume"];
+
+            echo "<ul>";
+
+                echo "<li> FRUITS : ";
+                foreach ($fruits as $fruit){
+                    echo $fruit.", ";
+                }
+                echo "</li>";
+
+                echo "<li> LEGUMES : ";
+                foreach ($legumes as $legume){
+                    echo $legume.", ";
+                }
+                echo "</li>";
+            echo "</ul>";
+
+        echo "</li>";
+
+
+
+
+    }
+    echo "</ul>";
+
+    echo "<h2>LE CA est de : ".$prix."€</h2>"
+
     ?>
     <!-- ICI le code PHP ne sera pas interprété -->
 </body>
