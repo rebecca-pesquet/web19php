@@ -31,8 +31,19 @@ $prenomsNote = [
         "Emilie" => "A"
 ];
 // Exo : Du coup on va sur Eleves.php et on fait une variable aussi sur la note
+foreach ($prenomsNote as $prenom => $note){
+    echo "<p>Consulter les note de <a href=\"/eleves.php?prenom=".$prenom."&note=".$note."\">".$prenom."</a></p>";
+}
 
-
+// Je veux que pour chaque élèves il y ait :
+// - Un Tableau avec 1 ligne pour chaque élève
+//    et 2 colonnes "Nom" et "Note"
+// Le petit + = Un lien sur l'élève qui emmène vers la page eleves.php qui affiche le prénom et la note
+echo ("<table>");
+foreach ($prenomsNote as $prenom => $note){
+    echo "<tr><td>".$prenom."</td><td>".$note."</td></tr>";
+}
+echo ("</table>");
 
 
 ?>
