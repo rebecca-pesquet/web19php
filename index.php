@@ -41,7 +41,10 @@ foreach ($prenomsNote as $prenom => $note){
 // Le petit + = Un lien sur l'élève qui emmène vers la page eleves.php qui affiche le prénom et la note
 echo ("<table>");
 foreach ($prenomsNote as $prenom => $note){
-    echo "<tr><td>".$prenom."</td><td>".$note."</td></tr>";
+    echo "<tr>
+            <td>".$prenom."</td>
+            <td>".$note."</td>
+        </tr>";
 }
 echo ("</table>");
 
