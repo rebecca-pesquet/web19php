@@ -25,6 +25,8 @@
         echo("<tr>");
             echo("<td><a href='/articleUpdate.php?Id=".$article["Id"]."'>".$article["Id"]."</a></td>");
             echo("<td>".$article["Titre"]."</td>");
+        echo("<td><a href='/articleDelete.php?Id=".$article["Id"]."'>SUPPRIMER [X]</a></td>");
+
         echo("</tr>");
     }
     echo("</table>");

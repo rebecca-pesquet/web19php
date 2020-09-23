@@ -4,6 +4,21 @@
     // https://github.com/fabienlierville/web19php
     //1. : Récupérer l'ID dans l'url
     $Id = $_GET["Id"];
+
+    //1 BIS : Si le formulaire a été posté alors mettre à jour l'article
+    if($_POST){
+        $requete = $bdd->prepare("UPDATE articles SET Titre=:Titre, Description=:Description, DateAjout=:DateAjout, Auteur=:Auteur WHERE Id=:Id");
+        $requete->execute([
+            "Titre" => $_POST["Titre"],
+            "Description" => $_POST["Description"],
+            "DateAjout" => $_POST["DateAjout"],
+            "Auteur" => $_POST["Auteur"],
+            "Id" => $Id
+        ]);
+    }
+
+
+
     //2. : Faire une requete SELECT Pour aller chercher l'article en question
     $requete = $bdd->prepare("SELECT * FROM articles where Id= :Id");
     $requete->execute([
