@@ -1,5 +1,11 @@
 <?php require("config.php"); ?>
 <?php require("_baseHTML1.php"); ?>
+
+<h1>Recherche :</h1>
+<form action="articleSearch.php" method="post">
+    <input type="text" name="search">
+</form>
+
 <h1>Tous les articles :</h1>
 
 <?php
