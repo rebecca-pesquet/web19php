@@ -1,6 +1,13 @@
 <?php require("config.php"); ?>
 <?php require("_baseHTML1.php"); ?>
+<?php
+    // Etape 1 : Récupérer l'ID de l'url
 
+    // Etape 2 : Faire une requete SELECT pour aller chercher l'article en question
+
+    // Etape 3 : Renseigner les champs de formulaire avec les données (issues de la requetes)
+
+?>
 <h1>Recherche :</h1>
 <form action="articleSearch.php" method="post">
     <input type="text" name="search">
