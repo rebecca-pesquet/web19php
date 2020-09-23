@@ -1,5 +1,18 @@
 <?php
 
+// Connexion à la Database
+$hostname="localhost";
+$username="root";
+$password="";
+$dbname="cesiblog";
+
+try{
+    $bdd = new PDO("mysql:host=".$hostname.";dbname=".$dbname,$username,$password);
+}catch (Exception $e){
+   die($e->getMessage());
+}
+
+
 function getXFirstWord($myvalue, $x){
     $arr = explode(' ',trim($myvalue));
     $arrayFirst = array_slice($arr, 0, $x);
@@ -13,4 +26,6 @@ function get_words($sentence, $count = 10) {
     preg_match("/(?:\w+(?:\W+|$)){0,$count}/", $sentence, $matches);
     return $matches[0];
 }
+
+
 

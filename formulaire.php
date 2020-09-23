@@ -4,5 +4,13 @@
 
     </textarea>
     <input type="date" name="publishDate">
+    <select name="langage">
+        <option value="php">PHP</option>
+        <option value="java">JAVA</option>
+        <option value="c#">C#</option>
+        <option value="asp">ASP</option>
+        <option value="flutter">FLUTTER</option>
+    </select>
+
     <input type="submit">
 </form>

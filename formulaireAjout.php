@@ -16,5 +16,10 @@ var_dump($_POST);
 <div><?php echo getXFirstWord($_POST["description"],4) ?></div>
 
 <?php
+    //Exo : dans la page formulaire ajouter un champ de type "SELECT" qui possède 5 valeurs (PHP, Java, C#, ASP, Flutter)
+    // : dans la parge formulaireAjout Si le champ a pour valeur "PHP"  afficher la date de publication sinon pas de date de publication
+if($_POST["langage"] == "php"){
+    echo $_POST["publishDate"];
+}
 
 ?>
