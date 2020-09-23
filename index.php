@@ -10,20 +10,14 @@
 
 <?php
     $requete = $bdd->query("SELECT * FROM articles") ;
-var_dump($requete);
     $datas = $requete->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($datas);
 
     echo("<table>");
     // Afficher les articles dans un <table>
     foreach ($datas as $key => $article){
         echo("<tr>");
-            echo("<td>".$article["Id"]."</td>");
+            echo("<td><a href='/articleUpdate.php?Id=".$article["Id"]."'>".$article["Id"]."</a></td>");
             echo("<td>".$article["Titre"]."</td>");
-            echo("<td>".$article["Description"]."</td>");
-            echo("<td>".$article["DateAjout"]."</td>");
-            echo("<td>".$article["Auteur"]."</td>");
-
         echo("</tr>");
     }
     echo("</table>");
