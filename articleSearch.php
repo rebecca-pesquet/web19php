@@ -4,8 +4,13 @@
 
 <?php
  var_dump($_POST);
-$Id = $_POST["search"];
-$requete = $bdd->query("SELECT * FROM articles WHERE Id=".$Id) ;
+$motcle = $_POST["search"];
+$requete = $bdd->prepare("SELECT * FROM articles WHERE Id= :IDARTICLE OR Description like :KEYWORD") ;
+$requete->execute([
+   "IDARTICLE" => $motcle,
+    "KEYWORD" => "%".$motcle."%"
+]);
+
 $datas = $requete->fetch(PDO::FETCH_ASSOC);
 var_dump($datas);
 
