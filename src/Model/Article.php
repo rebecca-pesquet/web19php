@@ -40,6 +40,11 @@ class Article {
 
     }
 
+    public function SqlGetAll(\PDO $bdd){
+        $requete = $bdd->prepare("SELECT * FROM articles");
+        $requete->execute();
+        return $requete->fetchAll(\PDO::FETCH_ASSOC);
+    }
     /**
      * @return mixed
      */

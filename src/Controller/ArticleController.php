@@ -1,6 +1,8 @@
 <?php
 namespace src\Controller;
 
+use src\Model\Article;
+
 class ArticleController{
 
     public function Add(){
@@ -8,6 +10,8 @@ class ArticleController{
     }
 
     public function All(){
+        $articles = new Article();
+        $datas = $articles->SqlGetAll();
         echo "Ici je vais devoir aller chercher tous mes articles pour les afficher une page HTML";
     }
 }
