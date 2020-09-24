@@ -1,4 +1,5 @@
 <?php
+namespace myclass;
 
 class Article {
     private $Id;
@@ -9,10 +10,34 @@ class Article {
     private $ImageRepository;
     private $ImageFileName;
 
+    /**
+     * Cette fonction retourne les X premiers mots de la description
+     * @param $limitWord = LA limite en question
+     * @return string
+     */
     public function getShortDesc($limitWord){
         $arr = explode(' ',trim($this->Desription));
         $arrayFirst = array_slice($arr, 0, $limitWord);
         return implode(" ", $arrayFirst);
+    }
+
+    public function SqlAdd(\PDO $bdd){
+        try {
+            $requete = $bdd->prepare("INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFilename) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFilename)");
+
+            $requete->execute([
+                "Titre" => $this->getTitre(),
+                "Description" => $this->getDesription(),
+                "DateAjout" => $this->getDateAjout(),
+                "Auteur" => $this->getAuteur(),
+                "ImageRepository" => $this->getImageRepository(),
+                "ImageFilename" => $this->getImageFileName(),
+            ]);
+            return "SqlAdd = OK";
+        }catch (\Exception $e){
+            return $e->getMessage();
+        }
+
     }
 
     /**
