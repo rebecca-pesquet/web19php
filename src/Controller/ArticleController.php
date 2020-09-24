@@ -2,6 +2,7 @@
 namespace src\Controller;
 
 use src\Model\Article;
+use src\Model\BDD;
 
 class ArticleController{
 
@@ -11,7 +12,8 @@ class ArticleController{
 
     public function All(){
         $articles = new Article();
-        $datas = $articles->SqlGetAll();
+        $datas = $articles->SqlGetAll(BDD::getInstance());
+        var_dump($datas);
         echo "Ici je vais devoir aller chercher tous mes articles pour les afficher une page HTML";
     }
 }
