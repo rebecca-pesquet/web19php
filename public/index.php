@@ -25,11 +25,11 @@ $action = (isset($_GET["action"])) ? $_GET["action"] : '';
 $param = (isset($_GET["param"])) ? $_GET["param"] : '';
 
 if($controller <> '') {
-    $class = "src\Controller\\{$controller}";
+    $class = "src\Controller\\{$controller}Controller";
     if(class_exists($class)){
         $ctrl = new $class;
         if(method_exists($class,$action)){
-            echo $controller->$action($param);
+            echo $ctrl->$action($param);
         }else{
             //Gérer le cas où la méthode n'existe pas
         }
