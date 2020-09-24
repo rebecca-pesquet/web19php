@@ -1,7 +1,7 @@
 <?php require("_baseHTML1.php"); ?>
 
     <h1>Ajout de l'article :</h1>
-    <form method="post" action="articleAdd.php">
+    <form method="post" action="articleAdd.php" enctype="multipart/form-data">
         <input type="text" name="Titre">
         <textarea name="Description">
         </textarea>
@@ -13,6 +13,7 @@
             <option>Léo</option>
             <option >Aegir</option>
         </select>
+        <input type="file" name="image">
         <input type="submit" value="Enregistrer les modifications">
     </form>
 
