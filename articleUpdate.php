@@ -54,4 +54,13 @@
     <input type="submit" value="Enregistrer les modifications">
 </form>
 
+<!-- Afficher l'image -->
+<?php
+ $cheminImage = "/uploads/images/".$article["ImageRepository"] ."/". $article["ImageFileName"]
+?>
+<img src='<?php echo $cheminImage ;?>'>
+
+
+
+
 <?php require("_baseHTML2.php"); ?>
