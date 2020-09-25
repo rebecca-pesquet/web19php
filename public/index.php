@@ -22,9 +22,10 @@ spl_autoload_register("chargerClasse");
 /**
  * ROUTEUR
  */
-$controller = (isset($_GET["controller"])) ? $_GET["controller"] : '';
-$action = (isset($_GET["action"])) ? $_GET["action"] : '';
-$param = (isset($_GET["param"])) ? $_GET["param"] : '';
+$urls = explode("/",$_GET["url"]);
+$controller = (isset($urls[0])) ? $urls[0] : '';
+$action = (isset($urls[1])) ? $urls[1] : '';
+$param = (isset($urls[2])) ? $urls[2] : '';
 
 if($controller <> '') {
     $class = "src\Controller\\{$controller}Controller";
