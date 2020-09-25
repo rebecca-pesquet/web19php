@@ -1,10 +1,11 @@
 <?php
 namespace src\Controller;
 
-class DefaultController {
+class DefaultController extends AbstractController {
 
     public function index(){
-        echo "Bienvenue sur la page Accueil";
+
+        return $this->twig->render("accueil.html.twig");
     }
 
 }
