@@ -40,10 +40,34 @@ class Article {
 
     }
 
+    /**
+     * Récupère tous les articles
+     * @param \PDO $bdd
+     * @return array
+     */
     public function SqlGetAll(\PDO $bdd){
         $requete = $bdd->prepare("SELECT * FROM articles");
         $requete->execute();
-        return $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $datas =  $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $listArticle = [];
+        foreach ($datas as $key => $article) {
+            // Créer un objet Article
+            $objArticle = new Article();
+            // Lui affecter les valeurs
+            $objArticle->setTitre($article["Titre"]);
+            $objArticle->setDesription($article["Description"]);
+            $objArticle->setDateAjout($article["DateAjout"]);
+            $objArticle->setAuteur($article["Auteur"]);
+            $objArticle->setImageRepository($article["ImageRepository"]);
+            $objArticle->setImageFileName($article["ImageFileName"]);
+            $objArticle->setId($article["Id"]);
+            // l'insérer dans le tableau à retourner
+            $listArticle[] = $objArticle;
+        }
+
+        return $listArticle;
+
+
     }
     /**
      * @return mixed

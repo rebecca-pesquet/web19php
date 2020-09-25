@@ -16,4 +16,6 @@ class ArticleController{
         var_dump($datas);
         echo "Ici je vais devoir aller chercher tous mes articles pour les afficher une page HTML";
     }
+
+
 }
