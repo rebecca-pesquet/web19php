@@ -69,6 +69,11 @@ class Article {
 
 
     }
+
+    public function SqlTruncate(\PDO $bdd){
+        $requete = $bdd->prepare("TRUNCATE TABLE articles");
+        $requete->execute();
+    }
     /**
      * @return mixed
      */

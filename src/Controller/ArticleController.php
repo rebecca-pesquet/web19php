@@ -19,10 +19,8 @@ class ArticleController{
 
     public function Fixtures(){
         //Vider la table
-        /*
-        $requete = $bdd->prepare("TRUNCATE TABLE articles");
-        $requete->execute();
-        */
+        $article = new Article();
+        $article->SqlTruncate(BDD::getInstance());
 
 //Tableau "Jeu de donnée"
         $Titres = ["PHP en force", "Java en baisse", "JS un jour ça marchera", "Flutter valeur montante", "GO le futur"];
@@ -43,7 +41,7 @@ class ArticleController{
             //Exécuter l'insertion
             $objArticle->SqlAdd(BDD::getInstance());
         }
-        header("Location:/controller=Article&action=All");
+        header("Location:/?controller=Article&action=All");
     }
 
 }
