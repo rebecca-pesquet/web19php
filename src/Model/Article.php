@@ -70,6 +70,16 @@ class Article {
 
     }
 
+    public function SqlGetById(\PDO $bdd, $Id){
+        $requete = $bdd->prepare("SELECT * FROM articles WHERE Id=:Id");
+        $requete->execute([
+            "Id" => $Id
+        ]);
+        $article = $requete->fetch();
+
+        return $article;
+    }
+
     public function SqlTruncate(\PDO $bdd){
         $requete = $bdd->prepare("TRUNCATE TABLE articles");
         $requete->execute();

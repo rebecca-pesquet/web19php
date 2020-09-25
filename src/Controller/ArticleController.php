@@ -19,6 +19,15 @@ class ArticleController extends AbstractController {
         ]);
     }
 
+    public function Show($id){
+        $articles = new Article();
+        $datas = $articles->SqlGetById(BDD::getInstance(),$id);
+
+        return $this->twig->render("Article/show.html.twig", [
+            "article"=>$datas
+        ]);
+    }
+
     public function Fixtures(){
         //Vider la table
         $article = new Article();
