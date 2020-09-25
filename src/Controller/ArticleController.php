@@ -11,11 +11,12 @@ class ArticleController extends AbstractController {
     }
 
     public function All(){
-
         $articles = new Article();
         $datas = $articles->SqlGetAll(BDD::getInstance());
-        var_dump($datas);
-        echo "Ici je vais devoir aller chercher tous mes articles pour les afficher une page HTML";
+
+        return $this->twig->render("Article/all.html.twig", [
+            "articleList"=>$datas
+        ]);
     }
 
     public function Fixtures(){
