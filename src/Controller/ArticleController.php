@@ -45,7 +45,7 @@ class ArticleController extends AbstractController {
             //Objet Article
             $objArticle = new Article();
             $objArticle->setTitre($Titres[0]);
-            $objArticle->setDesription("Ceci est une excellent description");
+            $objArticle->setDecsription("Ceci est une excellent description");
             $objArticle->setDateAjout($datedujour->format("Y-m-d"));
             $objArticle->setAuteur($Prenoms[0]);
 

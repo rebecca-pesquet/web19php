@@ -1,7 +1,7 @@
 <?php
 namespace src\Controller;
 
-class AbstractController{
+abstract class AbstractController{
     protected $loader;
     protected $twig;
 

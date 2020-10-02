@@ -4,7 +4,7 @@ namespace src\Model;
 class Article {
     private $Id;
     private $Titre;
-    private $Desription;
+    private $Description;
     private $DateAjout;
     private $Auteur;
     private $ImageRepository;
@@ -16,7 +16,7 @@ class Article {
      * @return string
      */
     public function getShortDesc($limitWord){
-        $arr = explode(' ',trim($this->Desription));
+        $arr = explode(' ',trim($this->Description));
         $arrayFirst = array_slice($arr, 0, $limitWord);
         return implode(" ", $arrayFirst);
     }
@@ -27,7 +27,7 @@ class Article {
 
             $requete->execute([
                 "Titre" => $this->getTitre(),
-                "Description" => $this->getDesription(),
+                "Description" => $this->getDescription(),
                 "DateAjout" => $this->getDateAjout(),
                 "Auteur" => $this->getAuteur(),
                 "ImageRepository" => $this->getImageRepository(),
@@ -49,13 +49,16 @@ class Article {
         $requete = $bdd->prepare("SELECT * FROM articles");
         $requete->execute();
         $datas =  $requete->fetchAll(\PDO::FETCH_ASSOC);
+        //$datas =  $requete->fetchAll(\PDO::FETCH_CLASS,'src\Model\Article');
+
+
         $listArticle = [];
         foreach ($datas as $key => $article) {
             // Créer un objet Article
             $objArticle = new Article();
             // Lui affecter les valeurs
             $objArticle->setTitre($article["Titre"]);
-            $objArticle->setDesription($article["Description"]);
+            $objArticle->setDescription($article["Description"]);
             $objArticle->setDateAjout($article["DateAjout"]);
             $objArticle->setAuteur($article["Auteur"]);
             $objArticle->setImageRepository($article["ImageRepository"]);
@@ -123,18 +126,18 @@ class Article {
     /**
      * @return mixed
      */
-    public function getDesription()
+    public function getDescription()
     {
-        return $this->Desription;
+        return $this->Description;
     }
 
     /**
-     * @param mixed $Desription
+     * @param mixed $Description
      * @return Article
      */
-    public function setDesription($Desription)
+    public function setDescription($Description)
     {
-        $this->Desription = $Desription;
+        $this->Description = $Description;
         return $this;
     }
 
