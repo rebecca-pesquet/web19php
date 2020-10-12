@@ -40,6 +40,25 @@ class Article {
 
     }
 
+    public function SqlUpdate(\PDO $bdd){
+        try {
+            $requete = $bdd->prepare("UPDATE articles set Titre= :Titre, Description = :Description, Auteur = :Auteur, DateAjout = :DateAjout, ImageRepository= :ImageRepository, ImageFilename= :ImageFilename WHERE Id = :Id");
+
+            $requete->execute([
+                "Titre" => $this->getTitre(),
+                "Description" => $this->getDescription(),
+                "DateAjout" => $this->getDateAjout(),
+                "Auteur" => $this->getAuteur(),
+                "ImageRepository" => $this->getImageRepository(),
+                "ImageFilename" => $this->getImageFileName(),
+                "Id" => $this->getId()
+            ]);
+            return "OK";
+        }catch (\Exception $e){
+            return $e->getMessage();
+        }
+
+    }
     /**
      * Récupère tous les articles
      * @param \PDO $bdd

@@ -7,12 +7,6 @@ use src\Model\BDD;
 class ArticleController extends AbstractController {
 
     public function Add(){
-        /*Si le formulaire est posté :
-            -> Ajouter l'article en BDD
-            -> Rediriger l'internaute vers la page qui permet d'afficher l'article
-        Sinon :
-            -> Afficher le formulaire
-        */
         if($_POST){
             $objArticle = new Article();
             $objArticle->setTitre($_POST["Titre"]);
@@ -48,6 +42,28 @@ class ArticleController extends AbstractController {
         ]);
     }
 
+    public function Update($id){
+        $articles = new Article();
+        $datas = $articles->SqlGetById(BDD::getInstance(),$id);
+
+        if($_POST){
+            $objArticle = new Article();
+            $objArticle->setTitre($_POST["Titre"]);
+            $objArticle->setDescription($_POST["Description"]);
+            $objArticle->setDateAjout($_POST["DateAjout"]);
+            $objArticle->setAuteur($_POST["Auteur"]);
+            //Exécuter la mise à jour
+            $id = $objArticle->SqlUpdate(BDD::getInstance());
+            // Redirection
+            header("Location:/article/show/$id");
+        }else{
+            return $this->twig->render("Article/update.html.twig", [
+                "article"=>$datas
+            ]);
+        }
+
+    }
+
     public function Fixtures(){
         //Vider la table
         $article = new Article();
@@ -65,7 +81,7 @@ class ArticleController extends AbstractController {
             //Objet Article
             $objArticle = new Article();
             $objArticle->setTitre($Titres[0]);
-            $objArticle->setDecsription("Ceci est une excellent description");
+            $objArticle->setDescription("Ceci est une excellent description");
             $objArticle->setDateAjout($datedujour->format("Y-m-d"));
             $objArticle->setAuteur($Prenoms[0]);
 
