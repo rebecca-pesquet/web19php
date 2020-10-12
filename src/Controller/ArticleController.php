@@ -7,17 +7,26 @@ use src\Model\BDD;
 class ArticleController extends AbstractController {
 
     public function Add(){
-        if($_POST){
-
-        }else{
-            return $this->twig->render("Article/add.html.twig");
-        }
         /*Si le formulaire est posté :
             -> Ajouter l'article en BDD
             -> Rediriger l'internaute vers la page qui permet d'afficher l'article
         Sinon :
             -> Afficher le formulaire
         */
+        if($_POST){
+            $objArticle = new Article();
+            $objArticle->setTitre($_POST["Titre"]);
+            $objArticle->setDescription($_POST["Description"]);
+            $objArticle->setDateAjout($_POST["DateAjout"]);
+            $objArticle->setAuteur($_POST["Auteur"]);
+            //Exécuter l'insertion
+            $id = $objArticle->SqlAdd(BDD::getInstance());
+            // Redirection
+            header("Location:/article/show/$id");
+        }else{
+            return $this->twig->render("Article/add.html.twig");
+        }
+
 
     }
 

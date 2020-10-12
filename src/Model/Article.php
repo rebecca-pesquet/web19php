@@ -33,7 +33,7 @@ class Article {
                 "ImageRepository" => $this->getImageRepository(),
                 "ImageFilename" => $this->getImageFileName(),
             ]);
-            return "SqlAdd = OK";
+            return $bdd->lastInsertId();
         }catch (\Exception $e){
             return $e->getMessage();
         }
