@@ -84,6 +84,13 @@ class Article {
         return $article;
     }
 
+    public function SqlDeleteById(\PDO $bdd, $Id){
+        $requete = $bdd->prepare("DELETE FROM articles WHERE Id=:Id");
+        $requete->execute([
+            "Id" => $Id
+        ]);
+        return true;
+    }
     public function SqlTruncate(\PDO $bdd){
         $requete = $bdd->prepare("TRUNCATE TABLE articles");
         $requete->execute();

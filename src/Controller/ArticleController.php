@@ -42,6 +42,13 @@ class ArticleController extends AbstractController {
         ]);
     }
 
+    public function Delete($id){
+        $articles = new Article();
+        $datas = $articles->SqlDeleteById(BDD::getInstance(),$id);
+
+        header("Location:/Article/All");
+    }
+
     public function Update($id){
         $articles = new Article();
         $datas = $articles->SqlGetById(BDD::getInstance(),$id);
