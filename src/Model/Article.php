@@ -48,28 +48,9 @@ class Article {
     public function SqlGetAll(\PDO $bdd){
         $requete = $bdd->prepare("SELECT * FROM articles");
         $requete->execute();
-        $datas =  $requete->fetchAll(\PDO::FETCH_ASSOC);
-        //$datas =  $requete->fetchAll(\PDO::FETCH_CLASS,'src\Model\Article');
-
-
-        $listArticle = [];
-        foreach ($datas as $key => $article) {
-            // Créer un objet Article
-            $objArticle = new Article();
-            // Lui affecter les valeurs
-            $objArticle->setTitre($article["Titre"]);
-            $objArticle->setDescription($article["Description"]);
-            $objArticle->setDateAjout($article["DateAjout"]);
-            $objArticle->setAuteur($article["Auteur"]);
-            $objArticle->setImageRepository($article["ImageRepository"]);
-            $objArticle->setImageFileName($article["ImageFileName"]);
-            $objArticle->setId($article["Id"]);
-            // l'insérer dans le tableau à retourner
-            $listArticle[] = $objArticle;
-        }
-
-        return $listArticle;
-
+        //$datas =  $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $datas =  $requete->fetchAll(\PDO::FETCH_CLASS,'src\Model\Article');
+        return $datas;
 
     }
 
@@ -78,6 +59,7 @@ class Article {
         $requete->execute([
             "Id" => $Id
         ]);
+        $requete->setFetchMode(\PDO::FETCH_CLASS,'src\Model\Article');
         $article = $requete->fetch();
 
         return $article;

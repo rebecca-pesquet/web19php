@@ -7,7 +7,18 @@ use src\Model\BDD;
 class ArticleController extends AbstractController {
 
     public function Add(){
-        echo "Ici je vais devoir faire un formulaire HTML qui me permet d'ajouter un article dans ma base de donnée";
+        if($_POST){
+
+        }else{
+            return $this->twig->render("Article/add.html.twig");
+        }
+        /*Si le formulaire est posté :
+            -> Ajouter l'article en BDD
+            -> Rediriger l'internaute vers la page qui permet d'afficher l'article
+        Sinon :
+            -> Afficher le formulaire
+        */
+
     }
 
     public function All(){
