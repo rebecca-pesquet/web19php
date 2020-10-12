@@ -52,8 +52,9 @@ class ArticleController extends AbstractController {
             $objArticle->setDescription($_POST["Description"]);
             $objArticle->setDateAjout($_POST["DateAjout"]);
             $objArticle->setAuteur($_POST["Auteur"]);
+            $objArticle->setId($id);
             //Exécuter la mise à jour
-            $id = $objArticle->SqlUpdate(BDD::getInstance());
+            $objArticle->SqlUpdate(BDD::getInstance());
             // Redirection
             header("Location:/article/show/$id");
         }else{
