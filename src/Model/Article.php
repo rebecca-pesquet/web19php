@@ -9,6 +9,8 @@ class Article {
     private $Auteur;
     private $ImageRepository;
     private $ImageFileName;
+    private $CategorieArticle;
+
 
     /**
      * Cette fonction retourne les X premiers mots de la description
@@ -23,7 +25,7 @@ class Article {
 
     public function SqlAdd(\PDO $bdd){
         try {
-            $requete = $bdd->prepare("INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFilename) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFilename)");
+            $requete = $bdd->prepare("INSERT INTO articles (Titre, Description, DateAjout, Auteur, ImageRepository, ImageFilename, CategorieArticle) VALUES(:Titre, :Description, :DateAjout, :Auteur, :ImageRepository, :ImageFilename, :CategorieArticle)");
 
             $requete->execute([
                 "Titre" => $this->getTitre(),
@@ -32,6 +34,8 @@ class Article {
                 "Auteur" => $this->getAuteur(),
                 "ImageRepository" => $this->getImageRepository(),
                 "ImageFilename" => $this->getImageFileName(),
+                "CategorieArticle" => $this->getCategorieArticle()
+
             ]);
             return $bdd->lastInsertId();
         }catch (\Exception $e){
@@ -42,7 +46,7 @@ class Article {
 
     public function SqlUpdate(\PDO $bdd){
         try {
-            $requete = $bdd->prepare("UPDATE articles set Titre= :Titre, Description = :Description, Auteur = :Auteur, DateAjout = :DateAjout, ImageRepository= :ImageRepository, ImageFilename= :ImageFilename WHERE Id = :Id");
+            $requete = $bdd->prepare("UPDATE articles set Titre= :Titre, Description = :Description, Auteur = :Auteur, DateAjout = :DateAjout, ImageRepository= :ImageRepository, ImageFilename= :ImageFilename, CategorieArticle= :CategorieArticle WHERE Id = :Id");
 
             $requete->execute([
                 "Titre" => $this->getTitre(),
@@ -51,7 +55,8 @@ class Article {
                 "Auteur" => $this->getAuteur(),
                 "ImageRepository" => $this->getImageRepository(),
                 "ImageFilename" => $this->getImageFileName(),
-                "Id" => $this->getId()
+                "Id" => $this->getId(),
+                "CategorieArticle" => $this->getCategorieArticle()
             ]);
             return "OK";
         }catch (\Exception $e){
@@ -183,7 +188,9 @@ class Article {
     {
         $this->Auteur = $Auteur;
         return $this;
-    }
+    }    /**
+
+
 
     /**
      * @return mixed
@@ -218,6 +225,24 @@ class Article {
     public function setImageFileName($ImageFileName)
     {
         $this->ImageFileName = $ImageFileName;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategorieArticle()
+    {
+        return $this->CategorieArticle;
+    }
+
+    /**
+     * @param mixed $CategorieArticle
+     * @return Article
+     */
+    public function setCategorieArticle($CategorieArticle)
+    {
+        $this->Id = $CategorieArticle;
         return $this;
     }
 

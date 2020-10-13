@@ -17,6 +17,8 @@
                         <br/>
                         Ecrit le {{ article.DateAjout|date("d/m/Y") }}
                     </p>
+                            <p value="{{ categorie.Id }}">{{ categorie.Libelle }}</p>
+
                     <a href="/Article/Show/{{ article.Id }}" class="btn btn-primary">
                         Consulter
                     </a>

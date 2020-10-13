@@ -38,8 +38,13 @@
             {% else %}
                 <option >Aegir</option>
             {% endif %}
-
         </select>
+        <select name="CategorieArticle">
+            {% for categorie in categories %}
+                <option value="{{ categorie.Id }}">{{ categorie.Libelle }}</option>
+            {% endfor %}
+        </select>
+
         <input type="submit" value="Enregistrer les modifications">
     </form>
 

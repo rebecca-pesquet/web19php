@@ -14,6 +14,11 @@
             <option>Léo</option>
             <option >Aegir</option>
         </select>
+        <select name="CategorieArticle">
+        {% for categorie in categories %}
+        <option value="{{ categorie.Id }}">{{ categorie.Libelle }}</option>
+        {% endfor %}
+        </select>
         <input type="submit" value="Enregistrer les modifications">
     </form>
 

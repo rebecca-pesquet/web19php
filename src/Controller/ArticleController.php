@@ -3,27 +3,30 @@ namespace src\Controller;
 
 use src\Model\Article;
 use src\Model\BDD;
+use src\Model\Categorie;
 
 class ArticleController extends AbstractController {
 
     public function Add(){
+        $categories = new Categorie();
+        $categorie = $categories->SqlGetAll(BDD::getInstance());
         if($_POST){
             $objArticle = new Article();
             $objArticle->setTitre($_POST["Titre"]);
             $objArticle->setDescription($_POST["Description"]);
             $objArticle->setDateAjout($_POST["DateAjout"]);
             $objArticle->setAuteur($_POST["Auteur"]);
+            $objArticle->setCategorieArticle($_POST["CategorieArticle"]);
             //Exécuter l'insertion
             $id = $objArticle->SqlAdd(BDD::getInstance());
             // Redirection
             header("Location:/article/show/$id");
         }else{
-            return $this->twig->render("Article/add.html.twig");
+            return $this->twig->render("Article/add.html.twig",array(
+                "categories"=>$categorie
+            ));
         }
-
-
     }
-
     public function All(){
         $articles = new Article();
         $datas = $articles->SqlGetAll(BDD::getInstance());
@@ -32,13 +35,11 @@ class ArticleController extends AbstractController {
             "articleList"=>$datas
         ]);
     }
-
     public function Show($id){
         $articles = new Article();
         $datas = $articles->SqlGetById(BDD::getInstance(),$id);
-
         return $this->twig->render("Article/show.html.twig", [
-            "article"=>$datas
+            "article"=>$datas,
         ]);
     }
 
@@ -60,6 +61,7 @@ class ArticleController extends AbstractController {
             $objArticle->setDateAjout($_POST["DateAjout"]);
             $objArticle->setAuteur($_POST["Auteur"]);
             $objArticle->setId($id);
+            $objArticle->setCategorieArticle(($_POST["CategorieArticle"]));
             //Exécuter la mise à jour
             $objArticle->SqlUpdate(BDD::getInstance());
             // Redirection
@@ -78,8 +80,10 @@ class ArticleController extends AbstractController {
         $article->SqlTruncate(BDD::getInstance());
 
 //Tableau "Jeu de donnée"
+
         $Titres = ["PHP en force", "Java en baisse", "JS un jour ça marchera", "Flutter valeur montante", "GO le futur"];
         $Prenoms = ["Rebecca", "Alexandre", "Emilie", "Léo", "Aegir"];
+        $Categorie = ["Genre narratif", "Genre poétique","Genre théâtral","Genre théâtral","Genre épistolaire"];
         $datedujour = new \DateTime();
         for($i = 0;$i < 200;$i++){
             $datedujour->modify("+1 day");

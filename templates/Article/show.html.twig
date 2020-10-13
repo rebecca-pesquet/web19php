@@ -5,6 +5,9 @@
     <p>{{ article.Titre }}</p>
     <p>{{ article.Description }}</p>
     <p>{{ article.Auteur }}</p>
+    <p>{{ Categorie.Icon }}</p>
+    <p>{{ Categorie.Libelle }}</p>
+
     <p><a href="/article/update/{{ article.Id }}"> Modifier ce super Article </a></p>
     <p><a href="/article/delete/{{ article.Id }}"> Supprimer ce super Article </a></p>
 {% endblock %}
